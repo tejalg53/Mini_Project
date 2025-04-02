@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartMess Feedback Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    /* Container Style */
+    .container {
+      background: #fff;
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    /* Form Styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-group {
+      position: relative;
+    }
+    label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 5px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="file"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .btn-submit {
+      background: #007BFF;
+      color: #fff;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn-submit:hover {
+      background: #0056b3;
+    }
+    /* Tooltip Styles */
+    .tooltip-icon {
+      position: absolute;
+      right: 10px;
+      top: 35px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #007BFF;
+    }
+    .tooltip-box {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 12px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 200px;
+      z-index: 100;
+    }
+    .tooltip-icon:hover + .tooltip-box {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+    /* Response Message */
+    #responseMessage {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 16px;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>SmartMess Feedback Form</h2>
+    <form id="feedbackForm">
+      <!-- Registration & Student Details -->
+      <div class="form-group">
+        <label for="reg_no">Registration Number</label>
+        <input type="text" id="reg_no" name="reg_no" placeholder="e.g., 22CS001" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Name of the Student</label>
+        <input type="text" id="name" name="name" placeholder="e.g., John Doe" required>
+      </div>
+      
+      <!-- Block & Room -->
+      <div class="form-group">
+        <label for="block">Block</label>
+        <input type="text" id="block" name="block" placeholder="e.g., A" required>
+      </div>
+      <div class="form-group">
+        <label for="room_no">Room Number</label>
+        <input type="text" id="room_no" name="room_no" placeholder="e.g., 101" required>
+      </div>
+      
+      <!-- Mess Details -->
+      <div class="form-group">
+        <label for="mess_name">Name of the Mess</label>
+        <input type="text" id="mess_name" name="mess_name" placeholder="e.g., Main Mess" required>
+      </div>
+      <div class="form-group">
+        <label for="mess_type">Type of Mess</label>
+        <select id="mess_type" name="mess_type" required>
+          <option value="">Select mess type</option>
+          <option value="Veg">Veg</option>
+          <option value="Non-veg">Non-veg</option>
+          <option value="Special mess">Special mess</option>
+          <option value="Night mess">Night mess</option>
+        </select>
+        <span class="tooltip-icon">ℹ️</span>
+        <div class="tooltip-box">Choose the type that best describes your mess.</div>
+      </div>
+      
+      <!-- Feedback Details -->
+      <div class="form-group">
+        <label for="feedback_type">Feedback Type</label>
+        <select id="feedback_type" name="feedback_type" required>
+          <option value="">Select feedback type</option>
+          <option value="Suggestion">Suggestion</option>
+          <option value="Improvement">Improvement</option>
+          <option value="Feedback">Feedback</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">Select category</option>
+          <option value="Quality">Quality</option>
+          <option value="Quantity">Quantity</option>
+          <option value="Hygiene">Hygiene</option>
+          <option value="Mess Timing">Mess Timing</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+      
+      <!-- Comments -->
+      <div class="form-group">
+        <label for="comments">Comments / Suggestions / Improvements</label>
+        <textarea id="comments" name="comments" placeholder="Enter your feedback here..." required></textarea>
+      </div>
+      
+      <!-- File Upload -->
+      <div class="form-group">
+        <label for="proof_file">Proof (Upload file)</label>
+        <input type="file" id="proof_file" name="proof_file" accept=".pdf,.doc,.docx,.jpg,.jpeg">
+      </div>
+      
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit">Submit Feedback</button>
+    </form>
+    <div id="responseMessage"></div>
+  </div>
+
+  <script>
+    // Use Fetch API to handle form submission
+    document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+      e.preventDefault(); // Prevent the default form submission
+      
+      const formData = new FormData(this);
+      
+      try {
+        const response = await fetch('http://localhost:3001/submit', {
+          method: 'POST',
+          body: formData
+        });
+        console.log(response);
+        const data = await response.json();
+        document.getElementById('responseMessage').innerText = data.message || 'Submission successful!';
+        this.reset(); // Optionally reset the form after successful submission
+      } catch (error) {
+        console.error('Error submitting feedback:', error);
+        document.getElementById('responseMessage').innerText = 'Submission failed! Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>
